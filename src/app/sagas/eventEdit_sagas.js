@@ -11,13 +11,13 @@ function editEvent(event) {
         setTimeout(function() {
             try {
                 let events = JSON.parse(localStorage.getItem("events"));
-                let index = events.findIndex((evt => evt.event_id == event.id));
-                events = [
+                let index = events.findIndex((evt => evt.event_id == event.event_id));
+                const updated_events = [
                     ...events.slice(0, index),
                     event,
                     ...events.slice(index + 1)
                 ]
-                localStorage.setItem("events", JSON.stringify(events));
+                localStorage.setItem("events", JSON.stringify(updated_events));
                 resolve();
             } catch(error) {
                 reject(error);
@@ -30,7 +30,6 @@ function editEvent(event) {
 function* workerSaga(action) {
   try {
     const response = yield call(editEvent, action.event);
-    console.log("Inside workerSaga")
     // dispatch a success action to the store with the new dog
     yield put({ type: "API_EDIT_SUCCESS" });
   

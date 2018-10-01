@@ -12,14 +12,17 @@ class EditEvent extends Component {
     }
 
     componentDidMount() {
-        const events = JSON.parse(localStorage.getItem("events"))
-        const event = events.filter(event => event.event_id == this.props.id)[0]
+        this.props.resetView();
+        this.props.loadEventForEdit(this.props.id);
+    }
+
+    componentWillReceiveProps(props) {
         this.setState({
-            event_name: event.event_name,
-            event_venue: event.event_venue,
-            event_date: event.event_date,
-            ticket_cost: event.ticket_cost,
-            tickets_available: event.tickets_available
+            event_name: props.load_event_success ? props.load_event_success.event_name : '',
+            event_venue: props.load_event_success ? props.load_event_success.event_venue : '',
+            event_date: props.load_event_success ? props.load_event_success.event_date : '',
+            ticket_cost: props.load_event_success ? props.load_event_success.ticket_cost : '',
+            tickets_available: props.load_event_success ? props.load_event_success.tickets_available : ''
         })
     }
 
@@ -46,7 +49,7 @@ class EditEvent extends Component {
     }
 
     render() {
-        if(this.props.event_loading) {
+        if(this.props.event_loading || this.props.load_event) {
             return (
                 <div className="loader"></div>
             )
@@ -59,7 +62,7 @@ class EditEvent extends Component {
                     </p>
                 </Alert>
             )
-        } else {
+        } else if(this.props.load_event_success) {
             return (
                 <div className="_mt-20">
                     <Grid>
@@ -117,7 +120,9 @@ class EditEvent extends Component {
                     </Grid>
                 </div>
             )            
-        }        
+        } else {
+            return (<div></div>)
+        }      
     }
 }
 
@@ -126,12 +131,17 @@ const mapStateToProps = (state, ownProps) => {
         event_loading: state.editEvent.edit_event,
         event_add_success: state.editEvent.edit_event_success,
         event_add_err: state.editEvent.edit_event_err,
+        load_event: state.loadEditEvent.load_event,
+        load_event_success: state.loadEditEvent.load_event_success,
+        load_event_err: state.loadEditEvent.load_event_err,
         id: ownProps.match.params.id
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        resetView: () => dispatch({ type: "RESET_VIEW" }),
+        loadEventForEdit: (event_id) => dispatch({ type: "API_LOAD_EVENT_REQUEST", event_id: event_id }),
         editEvent: (event) => dispatch({ type: "API_EDIT_REQUEST", event: event })
     };
 };
