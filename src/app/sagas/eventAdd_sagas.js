@@ -10,7 +10,10 @@ function addEvent(event) {
     return new Promise((resolve, reject) => {
         setTimeout(function() {
             try {
-                let events = [] || JSON.parse(localStorage.getItem("events"));
+                let events = [];
+                if(localStorage.getItem("events")) {
+                    events = JSON.parse(localStorage.getItem("events"));
+                }
                 events = [...events, event];
                 localStorage.setItem("events", JSON.stringify(events));
                 resolve();

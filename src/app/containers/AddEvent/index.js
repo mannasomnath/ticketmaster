@@ -11,6 +11,10 @@ class AddEvent extends Component {
         tickets_available: ''
     }
 
+    componentDidMount() {
+        this.props.resetAdd();
+    }
+    
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -121,6 +125,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        resetAdd: () => dispatch( {type: "RESET_ADD"}),
         addEvent: (event) => dispatch({ type: "API_ADD_REQUEST", event: event })
     };
 };
