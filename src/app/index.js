@@ -10,7 +10,7 @@ import App from './App'
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
-    
+
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 // run the saga
 sagaMiddleware.run(eventsSagas);

@@ -15,9 +15,9 @@ import EditEvent from './containers/EditEvent'
 const App = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route exact path='/organize' component={Organize}/>
-      <Route exact path='/purchase' component={Purchase}/>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/organize' component={Organize} />
+      <Route exact path='/purchase' component={Purchase} />
       <Route exact path='/viewEvent/:id' component={ViewEvent} />
       <Route exact path='/editEvent/:id' component={EditEvent} />
       <Route exact path='/addEvent' component={AddEvent} />

@@ -7,10 +7,10 @@ import editEvent from './editEventReducer';
 import loadEditEvent from './loadEditEventReducer';
 
 export default combineReducers({
-    userType: userType,
-    events: events,
-    eventsManipulate: eventsManipulate,
-    addEvent: addEvent,
-    editEvent: editEvent,
-    loadEditEvent: loadEditEvent
+  userType: userType,
+  events: events,
+  eventsManipulate: eventsManipulate,
+  addEvent: addEvent,
+  editEvent: editEvent,
+  loadEditEvent: loadEditEvent
 });

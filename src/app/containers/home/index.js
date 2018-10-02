@@ -5,33 +5,33 @@ import { events } from '../../events'
 
 class Home extends Component {
 
-    componentDidMount() {
-        localStorage.setItem("events", JSON.stringify(events));
-    }
+  componentDidMount() {
+    localStorage.setItem("events", JSON.stringify(events));
+  }
 
-    render() {
-        return (
-            <div className="_mt-20">
-                <Grid>
-                    <Panel bsStyle="primary">
-                        <Panel.Heading>
-                            <Panel.Title>What do you want to do today?</Panel.Title>
-                        </Panel.Heading>
-                        <Panel.Body>
-                        <ButtonToolbar>
-                            <Button bsSize="large" active>
-                                <Link to="/organize">Organize an Event</Link>
-                            </Button>
-                            <Button bsSize="large" active>
-                                <Link to="/purchase">Purchase Tickets for an Event</Link>
-                            </Button>
-                        </ButtonToolbar>
-                        </Panel.Body>
-                    </Panel>          
-                </Grid>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="_mt-20">
+        <Grid>
+          <Panel bsStyle="primary">
+            <Panel.Heading>
+              <Panel.Title>What do you want to do today?</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <ButtonToolbar>
+                <Button bsSize="large" active>
+                  <Link to="/organize">Organize an Event</Link>
+                </Button>
+                <Button bsSize="large" active>
+                  <Link to="/purchase">Purchase Tickets for an Event</Link>
+                </Button>
+              </ButtonToolbar>
+            </Panel.Body>
+          </Panel>
+        </Grid>
+      </div>
+    )
+  }
 }
 
 export default Home
